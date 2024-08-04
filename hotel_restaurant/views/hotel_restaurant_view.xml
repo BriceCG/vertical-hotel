@@ -537,7 +537,7 @@
                         class="oe_highlight"
                     />
                     <button
-                        name="%(report_hotel_res_order_bill)d"
+                        name="%(report_hotel_restaurant_order_bill)d"
                         attrs="{'invisible' : ['|', ('folio_id','!=',False), ('state','in',('draft','order','cancel'))]}"
                         type="action"
                         string="Generate Bill"
@@ -676,6 +676,7 @@
         action="open_view_hotel_restaurant_order_form_tree"
         sequence="11"
         parent="hotel_restaurant_menu"
+        active="False"
     />
 
 
