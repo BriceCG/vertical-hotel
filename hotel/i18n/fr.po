@@ -891,7 +891,7 @@ msgstr ""
 #. module: hotel
 #: model:ir.model.fields,field_description:hotel.field_folio_report_wizard__date_end
 msgid "End Date"
-msgstr ""
+msgstr "Date de fin"
 
 #. module: hotel
 #: model:ir.model.fields,help:hotel.field_hotel_room__tracking
@@ -1165,22 +1165,22 @@ msgstr ""
 #: model:ir.actions.act_window,name:hotel.hotel_folio_wizard
 #: model:ir.ui.menu,name:hotel.wizard_hotel_menu
 msgid "Hotel Folio Report"
-msgstr ""
+msgstr "Rapport des folios"
 
 #. module: hotel
 #: model:ir.ui.menu,name:hotel.hotel_management_menu
 msgid "Hotel Management"
-msgstr ""
+msgstr "Gestion d'hotêlerie"
 
 #. module: hotel
 #: model:res.groups,name:hotel.group_hotel_user
 msgid "Hotel Management / User"
-msgstr ""
+msgstr "Gestion d'hôtelerie / Utilisateur"
 
 #. module: hotel
 #: model:res.groups,name:hotel.group_hotel_manager
 msgid "Hotel Management/ Manager"
-msgstr ""
+msgstr "Gestion d'hôtelerie / Gestionnaire"
 
 #. module: hotel
 #: model:ir.model.fields,field_description:hotel.field_hotel_folio__hotel_policy
@@ -2076,7 +2076,7 @@ msgstr ""
 #. module: hotel
 #: model_terms:ir.ui.view,arch_db:hotel.view_hotel_folio_wizard
 msgid "Print Folio"
-msgstr ""
+msgstr "Imprimer Folio"
 
 #. module: hotel
 #: model_terms:ir.ui.view,arch_db:hotel.view_hotel_room_amenities_form
@@ -2786,7 +2786,7 @@ msgstr ""
 #. module: hotel
 #: model:ir.model.fields,field_description:hotel.field_folio_report_wizard__date_start
 msgid "Start Date"
-msgstr ""
+msgstr "Date de début"
 
 #. module: hotel
 #: model:ir.model.fields,field_description:hotel.field_hotel_folio__state

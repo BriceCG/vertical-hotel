@@ -349,7 +349,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_hotel_restaurant_reservation_search
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.wizard_hotel_restaurant_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #. module: hotel_restaurant
 #: model:ir.model.fields.selection,name:hotel_restaurant.selection__hotel_restaurant_order__state__cancel
@@ -656,7 +656,7 @@ msgstr "Brouillon"
 #: model:ir.model.fields,field_description:hotel_restaurant.field_folio_rest_reservation__date_end
 #: model:ir.model.fields,field_description:hotel_restaurant.field_wizard_hotel_restaurant__date_end
 msgid "End Date"
-msgstr ""
+msgstr "Date de fin"
 
 #. module: hotel_restaurant
 #: code:addons/hotel_restaurant/models/hotel_restaurant.py:0
@@ -1560,7 +1560,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hotel_restaurant.field_hotel_restaurant_order_list__restaurant_order_id
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_hotel_restaurant_order_search
 msgid "Restaurant Order"
-msgstr ""
+msgstr "Commande de restaurant"
 
 #. module: hotel_restaurant
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_hotelfolio1_form1_inherited
@@ -1571,7 +1571,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hotel_restaurant.field_hotel_folio__hotel_restaurant_orders_ids
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_folio_rest_reservation
 msgid "Restaurant Orders"
-msgstr ""
+msgstr "Commandes de restaurant"
 
 #. module: hotel_restaurant
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_hotelfolio1_form1_inherited
@@ -1582,7 +1582,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:hotel_restaurant.action_folio_rest_reservation
 #: model:ir.ui.menu,name:hotel_restaurant.folio_rest_reservation_menu
 msgid "Restaurant Reports"
-msgstr ""
+msgstr "Rapports de restaurant"
 
 #. module: hotel_restaurant
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_hotel_restaurant_reservation_search
@@ -1592,7 +1592,7 @@ msgstr ""
 #. module: hotel_restaurant
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_folio_rest_reservation
 msgid "Restaurant Reserved Order"
-msgstr ""
+msgstr "Commande réservée de restaurant"
 
 #. module: hotel_restaurant
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.view_hotel_restaurant_kitchen_order_search
@@ -1714,7 +1714,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hotel_restaurant.field_folio_rest_reservation__date_start
 #: model:ir.model.fields,field_description:hotel_restaurant.field_wizard_hotel_restaurant__date_start
 msgid "Start Date"
-msgstr ""
+msgstr "Date de début"
 
 #. module: hotel_restaurant
 #: code:addons/hotel_restaurant/models/hotel_restaurant.py:0
@@ -1837,7 +1837,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.report_res_table
 #: model_terms:ir.ui.view,arch_db:hotel_restaurant.wizard_hotel_restaurant_form_view
 msgid "Table Reservation List"
-msgstr ""
+msgstr "Liste de reservation de table"
 
 #. module: hotel_restaurant
 #: model:ir.model.fields,help:hotel_restaurant.field_hotel_restaurant_kitchen_order_tickets__table_nos_ids
@@ -2098,7 +2098,7 @@ msgstr ""
 #. module: hotel_restaurant
 #: model:ir.model.fields,field_description:hotel_restaurant.field_folio_rest_reservation__check
 msgid "With Details"
-msgstr ""
+msgstr "Avec détails"
 
 #. module: hotel_restaurant
 #: code:addons/hotel_restaurant/models/hotel_restaurant.py:0

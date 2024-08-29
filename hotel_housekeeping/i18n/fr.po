@@ -122,7 +122,7 @@ msgstr ""
 #. module: hotel_housekeeping
 #: model:ir.model.fields,field_description:hotel_housekeeping.field_hotel_housekeeping_wizard__date_end
 msgid "Activity End Date"
-msgstr ""
+msgstr "Date de fin d'activité"
 
 #. module: hotel_housekeeping
 #: model:ir.model.fields,field_description:hotel_housekeeping.field_hotel_activity__activity_exception_decoration
@@ -145,12 +145,12 @@ msgstr "Nom de l'activité"
 #: model:ir.ui.menu,name:hotel_housekeeping.wizard_activity_menu
 #: model_terms:ir.ui.view,arch_db:hotel_housekeeping.hotel_housekeeping_wizard_form_view
 msgid "Activity Report"
-msgstr ""
+msgstr "Rapport des activités"
 
 #. module: hotel_housekeeping
 #: model:ir.model.fields,field_description:hotel_housekeeping.field_hotel_housekeeping_wizard__date_start
 msgid "Activity Start Date"
-msgstr ""
+msgstr "Date de début d'activité"
 
 #. module: hotel_housekeeping
 #: model:ir.model.fields,field_description:hotel_housekeeping.field_hotel_activity__activity_state

@@ -559,7 +559,7 @@ msgstr "Brouillon"
 #. module: hotel_reservation
 #: model:ir.model.fields,field_description:hotel_reservation.field_hotel_reservation_wizard__date_end
 msgid "End Date"
-msgstr "Fin"
+msgstr "Date de fin"
 
 #. module: hotel_reservation
 #: model:ir.model.fields,field_description:hotel_reservation.field_hotel_reservation__checkin
