@@ -288,6 +288,7 @@
         <field name="inherit_id" ref="hotel.view_hotel_folio_form" />
         <field name="arch" type="xml">
             <field name="name" position='after'>
+                <br/>
                 <field name="reservation_id" readonly='1' />
             </field>
         </field>

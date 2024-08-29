@@ -2,7 +2,7 @@
     <!-- Email Template For Hotel Reservation -->
     <record id="email_template_hotel_reservation" model="mail.template">
         <field name="name">Reservation-Send by Email</field>
-        <field name="email_from">{{ object.company_id.partner_id.email or ''|safe }}
+        <field name="email_from">{{ object.company_id.partner_id.email or '' }}
         </field>
         <field name="subject">Hotel Reservation Detail</field>
         <field name="partner_to">{{ object.partner_id.id }}</field>
@@ -36,7 +36,7 @@
                         Please find all the details regarding the confirmation
                         of the reservation on Date <strong>
                             <t
-                                t-out="format_datetime(object.date_order,tz=user.tz,dt_format='%Y-%m-%d %H:%M:%S')"
+                                t-out="format_datetime(object.date_order,tz=user.tz,dt_format='Y-m-d H:M:S')"
                             />
                         </strong> are listed below:
                     </p>
@@ -49,14 +49,14 @@
                         Date Of Arrival :
                         <strong>
                             <t
-                                t-out="format_datetime(object.checkin,tz=user.tz, dt_format='%Y-%m-%d %H:%M:%S')"
+                                t-out="format_datetime(object.checkin,tz=user.tz, dt_format='Y-m-d H:M:S')"
                             />
                         </strong>
                         <br />
                         Date Of Departure :
                         <strong>
                             <t
-                                t-out="format_datetime(object.checkout,tz=user.tz, dt_format='%Y-%m-%d %H:%M:%S')"
+                                t-out="format_datetime(object.checkout,tz=user.tz, dt_format='Y-m-d H:M:S')"
                             />
                         </strong>
                         <br />
