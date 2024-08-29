@@ -262,7 +262,7 @@ class HotelFolio(models.Model):
             if not rec.order_id:
                 raise UserError(_("Order id is not available"))
             for product in rec.room_line_ids.filtered(
-                lambda l: l.order_line_id.product_id == product
+                lambda l: l.order_line_id.product_id.isroom
             ):
                 rooms = self.env["hotel.room"].search([("product_id", "=", product.id)])
                 rooms.write({"isroom": True, "status": "available"})
@@ -291,7 +291,7 @@ class HotelFolio(models.Model):
         self.write({"state": "draft", "invoice_ids": []})
         order_line_recs.write(
             {
-                "invoiced": False,
+                "invoice_status": "upselling",
                 "state": "draft",
                 "invoice_lines": [(6, 0, [])],
             }
