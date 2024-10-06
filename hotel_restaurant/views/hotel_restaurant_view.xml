@@ -142,7 +142,7 @@
                     <button
                         string="Confirm"
                         name="table_reserved"
-                        states="draft"
+                        invisible="state != 'draft'"
                         type="object"
                         icon="fa-check"
                         class="oe_highlight"
@@ -150,7 +150,7 @@
                     <button
                         string="Done"
                         name="table_done"
-                        states="confirm"
+                        invisible="state != 'confirm'"
                         type="object"
                         icon="fa-check-square-o"
                         class="oe_highlight"
@@ -158,7 +158,7 @@
                     <button
                         string="Cancel"
                         name="table_cancel"
-                        states="confirm"
+                        invisible="state != 'confirm'"
                         type="object"
                         icon="fa-close"
                         class="oe_highlight"
@@ -166,7 +166,7 @@
                     <button
                         string="Set to Draft"
                         name="action_set_to_draft"
-                        states="cancel"
+                        invisible="state != 'cancel'"
                         type="object"
                         icon="fa-files-o"
                         class="oe_highlight"
@@ -175,7 +175,7 @@
                         string="Create Order"
                         name="create_order"
                         type="object"
-                        states="done"
+                        invisible="state != 'done'"
                         icon="fa-file-text-o"
                         class="oe_highlight"
                     />
@@ -196,11 +196,13 @@
                             <newline />
                             <field
                                 name="folio_id"
-                                attrs="{'invisible':[('is_folio','=',False)], 'required':[('is_folio','=',True)]}"
+                                invisible="not is_folio"
+                                required="is_folio"
                             />
                             <field
                                 name="room_id"
-                                attrs="{'invisible':[('is_folio','=',False)] ,'required':[('is_folio','=',True)]}"
+                                invisible="not is_folio"
+                                required="is_folio"
                             />
                         </group>
                         <newline />
@@ -336,7 +338,7 @@
                         string="Generate KOT"
                         name="reservation_generate_kot"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         icon="fa-arrow-right"
                         class="oe_highlight"
                     />
@@ -344,7 +346,7 @@
                         string="Generate KOT"
                         name="reservation_update_kot"
                         type="object"
-                        states="order"
+                        invisible="state != 'order'"
                         icon="fa-arrow-right"
                         class="oe_highlight"
                     />
@@ -352,13 +354,13 @@
                         string="Done"
                         name="done_kot"
                         type="object"
-                        states="order"
+                        invisible="state != 'order'"
                         icon="fa-check"
                         class="oe_highlight"
                     />
                     <button
                         name="%(report_hotel_reservation_order_bill)d"
-                        attrs="{'invisible' : ['|', ('folio_id','!=',False), ('state','in',('draft','order'))]}"
+                        invisible="not folio_id or state in ('draft','order')"
                         type="action"
                         string="Generate Bill"
                         class="oe_highlight"
@@ -377,7 +379,7 @@
                             <field name="reservation_id" />
                             <field
                                 name="folio_id"
-                                attrs="{'invisible': [('is_folio','=',False)]}"
+                                invisible="not is_folio"
                             />
                         </group>
                         <group colspan="4" col="4">
@@ -500,7 +502,7 @@
                         string="Generate KOT"
                         name="generate_kot"
                         type="object"
-                        states="draft"
+                        invisible="state != 'draft'"
                         icon="fa-arrow-right"
                         class="oe_highlight"
                     />
@@ -508,7 +510,7 @@
                         string="Generate KOT"
                         name="generate_kot_update"
                         type="object"
-                        states="order"
+                        invisible="state != 'order'"
                         icon="fa-arrow-right"
                         class="oe_highlight"
                     />
@@ -516,14 +518,14 @@
                         string="Done"
                         name="done_order_kot"
                         type="object"
-                        states="order"
+                        invisible="state != 'order'"
                         icon="fa-check"
                         class="oe_highlight"
                     />
                     <button
                         string="Cancel"
                         name="done_cancel"
-                        states="draft,order"
+                        invisible="state not in ('draft', 'order')"
                         type="object"
                         icon="fa-close"
                         class="oe_highlight"
@@ -531,14 +533,14 @@
                     <button
                         string="Set to Draft"
                         name="set_to_draft"
-                        states="cancel"
+                        invisible="state != 'cancel'"
                         type="object"
                         icon="fa-file-o"
                         class="oe_highlight"
                     />
                     <button
                         name="%(report_hotel_restaurant_order_bill)d"
-                        attrs="{'invisible' : ['|', ('folio_id','!=',False), ('state','in',('draft','order','cancel'))]}"
+                        invisible="is_folio or state in ('draft','order','cancel')"
                         type="action"
                         string="Generate Bill"
                         class="oe_highlight"
@@ -562,11 +564,13 @@
                         <group colspan="2" col="4">
                             <field
                                 name="folio_id"
-                                attrs="{'invisible':[('is_folio','=',False)], 'required':[('is_folio','=',True)]}"
+                                invisible="not is_folio"
+                                required="is_folio"
                             />
                             <field
                                 name="room_id"
-                                attrs="{'invisible':[('is_folio','=',False)], 'required':[('is_folio','=',True)]}"
+                                invisible="not is_folio"
+                                required="is_folio"
                             />
                         </group>
                         <group colspan="2" col="4">

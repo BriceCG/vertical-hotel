@@ -8,7 +8,7 @@
                 <header>
                     <button
                         name="action_confirm"
-                        states="draft"
+                        invisible="state != 'draft'"
                         string="Confirm Sale"
                         class="btn-primary"
                         type="object"
@@ -18,11 +18,11 @@
                         string="Create Invoice"
                         type="action"
                         class="btn-primary"
-                        attrs="{'invisible': ['|',('state', 'in', ('draft','cancel','done')), ('invoice_status', 'in', 'invoiced')]}"
+                        invisible="state in ('draft', 'cancel', 'done') or ('invoice_status', 'in', 'invoiced')"
                     />
                     <button
                         name="action_cancel_draft"
-                        states="cancel"
+                        invisible="state != 'cancel'"
                         string="Set to Draft"
                         type="object"
                         class="oe_highlight"
@@ -30,14 +30,14 @@
                     <button
                         name="action_cancel"
                         string="Cancel"
-                        states="sale"
+                        invisible="state != 'sale'"
                         type="object"
                         class="oe_highlight"
                     />
                     <button
                         name="action_cancel"
                         string="Cancel"
-                        states="draft"
+                        invisible="state != 'draft'"
                         type="object"
                         class="oe_highlight"
                     />
@@ -45,7 +45,7 @@
                         name="action_done"
                         type="object"
                         string="Set to Done"
-                        states="sale"
+                        invisible="state != 'sale'"
                         class="oe_highlight"
                         help="If a Hotel Folio is done, you cannot modify it manually anymore. However, you will still be able to invoice or deliver. This is used to freeze the Hotel Folio."
                     />
@@ -67,7 +67,7 @@
                         <field name="invoice_status" />
                         <field
                             name="hotel_invoice_id"
-                            states='sale,done,cancel'
+                            invisible="state not in ('sale', 'done', 'cancel')"
                             readonly="1"
                         />
                     </group>
@@ -119,7 +119,7 @@
                                         name="product_id"
                                         string="Room No"
                                         required="1"
-                                        context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'uom':product_uom, 'checkin_date':checkin_date, 'checkout_date':checkout_date}"
+                                        context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id, 'checkin_date':checkin_date, 'checkout_date':checkout_date}"
                                         domain="[('isroom','=',True)]"
                                         options="{'no_open': True}"
                                     />
@@ -132,7 +132,7 @@
                                     <field
                                         name="product_uom"
                                         string="Rent(UOM)"
-                                        attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
+                                        readonly="state in ('sale','done', 'cancel')"
                                         context="{'company_id': parent.company_id}"
                                         groups="uom.group_uom"
                                         options="{'no_open': True}"
@@ -149,12 +149,10 @@
                                         name="discount"
                                     />
                                     <field
-                                        groups="account.group_show_line_subtotals_tax_excluded"
                                         name="price_subtotal"
                                         widget="monetary"
                                     />
                                     <field
-                                        groups="account.group_show_line_subtotals_tax_included"
                                         name="price_total"
                                         widget="monetary"
                                     />
@@ -178,7 +176,7 @@
                                         name="product_id"
                                         required="1"
                                         domain="[('isservice','=',True)]"
-                                        context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'hotel':parent.warehouse_id,'uom':product_uom}"
+                                        context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'hotel':parent.warehouse_id}"
                                         options="{'no_open': True}"
                                     />
                                     <field name="ser_checkout_date" invisible="1" />
@@ -198,7 +196,7 @@
                                     <field
                                         name="product_uom"
                                         string="Rent(UOM)"
-                                        attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
+                                        readonly="state in ('sale','done', 'cancel')"
                                         context="{'company_id': parent.company_id}"
                                         groups="uom.group_uom"
                                         options="{'no_open': True}"
@@ -215,12 +213,10 @@
                                         name="discount"
                                     />
                                     <field
-                                        groups="account.group_show_line_subtotals_tax_excluded"
                                         name="price_subtotal"
                                         widget="monetary"
                                     />
                                     <field
-                                        groups="account.group_show_line_subtotals_tax_included"
                                         name="price_total"
                                         widget="monetary"
                                     />
@@ -252,7 +248,7 @@
                                 <field name="user_id" />
                                 <field
                                     name="hotel_policy"
-                                    attrs="{'readonly':[('state','not in',('draft'))]}"
+                                    readonly="state not in ('draft')"
                                 />
                                 <field name="client_order_ref" />
                             </group>

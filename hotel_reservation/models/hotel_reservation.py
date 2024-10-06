@@ -36,8 +36,7 @@ class HotelReservation(models.Model):
         readonly=True,
         index=True,
         required=True,
-        default=1,
-        states={"draft": [("readonly", False)]},
+        default=1
     )
     partner_id = fields.Many2one(
         "res.partner",
@@ -45,21 +44,18 @@ class HotelReservation(models.Model):
         readonly=True,
         index=True,
         required=True,
-        states={"draft": [("readonly", False)]},
     )
     pricelist_id = fields.Many2one(
         "product.pricelist",
         "Scheme",
         required=True,
         readonly=True,
-        states={"draft": [("readonly", False)]},
         help="Pricelist for current reservation.",
     )
     partner_invoice_id = fields.Many2one(
         "res.partner",
         "Invoice Address",
         readonly=True,
-        states={"draft": [("readonly", False)]},
         help="Invoice address for " "current reservation.",
     )
     partner_order_id = fields.Many2one(
@@ -82,22 +78,18 @@ class HotelReservation(models.Model):
         "Expected-Date-Arrival",
         required=True,
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     checkout = fields.Datetime(
         "Expected-Date-Departure",
         required=True,
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     adults = fields.Integer(
         readonly=True,
-        states={"draft": [("readonly", False)]},
         help="List of adults there in guest list. ",
     )
     children = fields.Integer(
         readonly=True,
-        states={"draft": [("readonly", False)]},
         help="Number of children there in guest list.",
     )
     reservation_line = fields.One2many(
@@ -105,7 +97,6 @@ class HotelReservation(models.Model):
         "line_id",
         help="Hotel room reservation details.",
         readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     state = fields.Selection(
         [
@@ -508,8 +499,7 @@ class HotelReservationLine(models.Model):
         "hotel_reservation_line_room_rel",
         "hotel_reservation_line_id",
         "room_id",
-        domain="[('isroom','=',True),\
-                               ('categ_id','=',categ_id)]",
+        domain="[('isroom','=',True)]",
     )
     categ_id = fields.Many2one("hotel.room.type", "Room Type")
 

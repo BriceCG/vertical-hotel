@@ -19,7 +19,6 @@ class ProductProduct(models.Model):
         offset=0,
         limit=None,
         order=None,
-        count=False,
         access_rights_uid=None,
     ):
         args = args or []
@@ -53,5 +52,5 @@ class ProductProduct(models.Model):
                     avail_prod_ids.append(room.product_id.id)
             args.append(("id", "in", avail_prod_ids))
         return super(ProductProduct, self)._search(
-            args, offset, limit, order, count=count, access_rights_uid=access_rights_uid
+            args, offset, limit, order, access_rights_uid=access_rights_uid
         )

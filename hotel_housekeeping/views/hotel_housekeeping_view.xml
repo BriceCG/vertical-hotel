@@ -14,7 +14,7 @@
                         name="room_clean"
                         aria-label="Clean"
                         title="Clean"
-                        states="inspect,dirty"
+                        invisible="state not in ('inspect', 'dirty')"
                         type="object"
                         class="btn btn-primary"
                     >
@@ -25,7 +25,7 @@
                         name="action_set_to_dirty"
                         aria-label="Dirty"
                         title="Dirty"
-                        states="inspect,clean"
+                        invisible="state not in ('inspect', 'clean')"
                         type="object"
                         class="btn btn-primary"
                     >
@@ -36,7 +36,7 @@
                         name="room_done"
                         aria-label="Done"
                         title="Done"
-                        states="clean"
+                        invisible="state != 'clean'"
                         type="object"
                         class="btn btn-primary"
                     >
@@ -47,7 +47,7 @@
                         name="room_cancel"
                         aria-label="Cancel"
                         title="Cancel"
-                        states="clean,dirty,inspect"
+                        invisible="state not in ('clean', 'dirty', 'inspect')"
                         type="object"
                         class="btn btn-primary"
                     >
@@ -58,7 +58,7 @@
                         name="room_inspect"
                         aria-label="Inspect"
                         title="Inspect"
-                        states="cancel"
+                        invisible="state != 'cancel'"
                         type="object"
                         class="btn btn-primary"
                     >
@@ -78,7 +78,7 @@
                             <field name="inspect_date_time" />
                             <field
                                 name="quality"
-                                attrs="{'invisible':[('state','not in',['clean','done'])]}"
+                                invisible="state not in ('clean', 'done')"
                             />
                         </group>
                     </group>

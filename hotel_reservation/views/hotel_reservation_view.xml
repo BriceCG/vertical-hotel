@@ -12,34 +12,34 @@
                         name="action_send_reservation_mail"
                         type="object"
                         string="Send Reservation Email"
-                        states="confirm"
+                        invisible="state != 'confirm'"
                         class="oe_highlight"
                     />
                     <button
                         name="confirmed_reservation"
                         string="Confirm"
-                        states="draft"
+                        invisible="state != 'draft'"
                         class="oe_highlight"
                         type="object"
                     />
                     <button
                         name="create_folio"
                         string="Create Folio"
-                        states="confirm"
+                        invisible="state != 'confirm'"
                         class="oe_highlight"
                         type="object"
                     />
                     <button
                         name="cancel_reservation"
                         string="Cancel Reservation"
-                        states="draft,confirm"
+                        invisible="state not in ('draft', 'confirm')"
                         class="oe_highlight"
                         type="object"
                     />
                     <button
                         name="set_to_draft_reservation"
                         string="Set to Draft"
-                        states="cancel"
+                        invisible="state != 'cancel'"
                         class="oe_highlight"
                         type="object"
                     />
@@ -52,7 +52,7 @@
                             type="object"
                             icon="fa-file-text-o"
                             class="oe_stat_button"
-                            attrs="{'invisible': [('no_of_folio', '=', 0)]}"
+                            invisible="no_of_folio == 0"
                         >
                             <field
                                 name="no_of_folio"
@@ -68,15 +68,16 @@
                     <group>
                         <group colspan="4" col="4">
                             <field name="date_order" />
-                            <field name="company_id" />
+                            <field name="company_id" readonly="state != 'draft'" />
                         </group>
                         <separator />
                         <group colspan="4" col="4">
                             <field
                                 name="partner_id"
                                 context="{'default_customer_rank': 1}"
+                                readonly="state != 'draft'"
                             />
-                            <field name="pricelist_id" col="2" />
+                            <field name="pricelist_id" col="2" readonly="state != 'draft'" />
                             <field
                                 name="partner_order_id"
                                 domain="[('parent_id','=',partner_id)]"
@@ -84,6 +85,7 @@
                             <newline />
                             <field
                                 name="partner_invoice_id"
+                                readonly="state != 'draft'"
                                 domain="[('parent_id','=',partner_id)]"
                             />
                             <field
@@ -93,15 +95,15 @@
                             />
                         </group>
                         <group colspan="4" col="4">
-                            <field name="checkin" />
-                            <field name="checkout" />
-                            <field name="adults" required="1" />
-                            <field name="children" />
+                            <field name="checkin" readonly="state != 'draft'" />
+                            <field name="checkout" readonly="state != 'draft'" />
+                            <field name="adults" required="1" readonly="state != 'draft'" />
+                            <field name="children" readonly="state != 'draft'" />
                         </group>
                     </group>
                     <notebook>
                         <page name="reservation_line" string='Reservation Line'>
-                            <field name="reservation_line" colspan="4" nolabel="1">
+                            <field name="reservation_line" readonly="state != 'draft'" colspan="4" nolabel="1">
                                 <form string="Reservation Line">
                                     <separator string="Room Type" />
                                     <field name="name" invisible="1" />
