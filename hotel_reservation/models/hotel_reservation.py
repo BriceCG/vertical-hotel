@@ -350,7 +350,7 @@ class HotelReservation(models.Model):
         compose_form_id = self.env.ref("mail.email_compose_message_wizard_form").id
         ctx = {
             "default_model": "hotel.reservation",
-            "default_res_id": self.id,
+            "default_res_ids": self.ids,
             "default_use_template": bool(template_id),
             "default_template_id": template_id,
             "default_composition_mode": "comment",
@@ -597,3 +597,11 @@ class HotelRoomReservationLine(models.Model):
     )
     reservation_id = fields.Many2one("hotel.reservation", "Reservation")
     status = fields.Selection(string="state", related="reservation_id.state")
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.model
+    def create(self, vals_list):
+        res = super(SaleOrder, self).create(vals_list)
+        return res

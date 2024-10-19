@@ -14,11 +14,11 @@
                         type="object"
                     />
                     <button
-                        name="%(sale.action_view_sale_advance_payment_inv)d"
+                        name="open_create_invoice_action"
                         string="Create Invoice"
-                        type="action"
+                        type="object"
                         class="btn-primary"
-                        invisible="state in ('draft', 'cancel', 'done') or ('invoice_status', 'in', 'invoiced')"
+                        invisible="state != 'sale' or invoice_status != 'to invoice'"
                     />
                     <button
                         name="action_cancel_draft"
@@ -34,26 +34,19 @@
                         type="object"
                         class="oe_highlight"
                     />
-                    <button
-                        name="action_cancel"
-                        string="Cancel"
-                        invisible="state != 'draft'"
-                        type="object"
-                        class="oe_highlight"
-                    />
-                    <button
-                        name="action_done"
-                        type="object"
-                        string="Set to Done"
-                        invisible="state != 'sale'"
-                        class="oe_highlight"
-                        help="If a Hotel Folio is done, you cannot modify it manually anymore. However, you will still be able to invoice or deliver. This is used to freeze the Hotel Folio."
-                    />
+<!--                    <button-->
+<!--                        name="action_done"-->
+<!--                        type="object"-->
+<!--                        string="Set to Done"-->
+<!--                        invisible="state != 'sale'"-->
+<!--                        class="oe_highlight"-->
+<!--                        help="If a Hotel Folio is done, you cannot modify it manually anymore. However, you will still be able to invoice or deliver. This is used to freeze the Hotel Folio."-->
+<!--                    />-->
                     <field
                         name="state"
                         select="2"
                         widget="statusbar"
-                        statusbar_visible="draft,sent,sale,done"
+                        statusbar_visible="draft,sent,sale"
                     />
                 </header>
                 <sheet>
@@ -92,14 +85,15 @@
                             </group>
                             <newline />
                             <group colspan="4" col="4" invisible="1">
-                                <field name="checkin_date" />
-                                <field name="checkout_date" />
+                                <field name="checkin_date" readonly="state != 'draft'" />
+                                <field name="checkout_date"  readonly="state != 'draft'" />
                                 <field name="duration" readonly="1" />
                                 <field name="duration_dummy" invisible="1" />
                             </group>
                             <separator string="Room Lines" colspan="4" />
                             <field
                                 name="room_line_ids"
+                                readonly="state not in ('draft', 'sent')"
                                 colspan="4"
                                 string="Room Line"
                                 nolabel="1"
@@ -163,6 +157,7 @@
                             <separator string="Service Lines" colspan="4" />
                             <field
                                 name="service_line_ids"
+                                readonly="state not in ('draft', 'sent')"
                                 colspan="4"
                                 string="Service Line"
                                 nolabel="1"

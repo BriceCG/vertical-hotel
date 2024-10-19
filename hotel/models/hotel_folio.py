@@ -68,28 +68,24 @@ class HotelFolio(models.Model):
         "Check In",
         required=True,
         readonly=True,
-        states={"draft": [("readonly", False)]},
         default=_get_checkin_date,
     )
     checkout_date = fields.Datetime(
         "Check Out",
         required=True,
         readonly=True,
-        states={"draft": [("readonly", False)]},
         default=_get_checkout_date,
     )
     room_line_ids = fields.One2many(
         "hotel.folio.line",
         "folio_id",
         readonly=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         help="Hotel room reservation detail.",
     )
     service_line_ids = fields.One2many(
         "hotel.service.line",
         "folio_id",
         readonly=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         help="Hotel services details provided to"
         "Customer and it will included in "
         "the main Invoice.",
@@ -250,9 +246,17 @@ class HotelFolio(models.Model):
                     "pricelist_id": self.partner_id.property_product_pricelist.id,
                 }
             )
+    #
+    # def action_done(self):
+    #     self.write({"state": "done"})
 
-    def action_done(self):
-        self.write({"state": "done"})
+    def open_create_invoice_action(self):
+        action = self.env.ref("sale.action_view_sale_advance_payment_inv").read()[0]
+        action["context"] = {
+            "active_ids": [self.order_id.id],
+            "res_id": self.id
+        }
+        return action
 
     def action_cancel(self):
         """
@@ -437,7 +441,7 @@ class HotelFolioLine(models.Model):
     def _get_display_price(self, product):
         # TO DO: move me in master/saas-16 on sale.order
         if self.folio_id.pricelist_id.discount_policy == "with_discount":
-            return product.with_context(pricelist=self.folio_id.pricelist_id.id).price
+            return product.with_context(pricelist=self.folio_id.pricelist_id.id).list_price
         product_context = dict(
             self.env.context,
             partner_id=self.folio_id.partner_id.id,
@@ -475,8 +479,8 @@ class HotelFolioLine(models.Model):
             line = line.with_company(line.company_id)
             fpos = (
                 line.order_id.fiscal_position_id
-                or line.order_id.fiscal_position_id.get_fiscal_position(
-                    line.order_partner_id.id
+                or line.order_id.fiscal_position_id._get_fiscal_position(
+                    line.order_partner_id
                 )
             )
             # If company_id is set, always filter taxes by the company
@@ -517,9 +521,7 @@ class HotelFolioLine(models.Model):
         )
 
         vals.update(
-            name=self.order_line_id.get_sale_order_line_multiline_description_sale(
-                product
-            )
+            name=self.order_line_id._get_sale_order_line_multiline_description_sale()
         )
 
         self._compute_tax_id()

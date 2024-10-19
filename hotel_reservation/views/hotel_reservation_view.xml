@@ -92,6 +92,7 @@
                                 name="partner_shipping_id"
                                 domain="[('parent_id','=',partner_id)]"
                                 invisible="True"
+                                force_save="1"
                             />
                         </group>
                         <group colspan="4" col="4">
