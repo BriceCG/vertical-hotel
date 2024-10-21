@@ -68,7 +68,8 @@ class HotelRestaurantReservation(models.Model):
         for rec in self:
             if rec.folio_id:
                 rec.customer_id = rec.folio_id.partner_id.id
-                rec.room_id = rec.folio_id.room_line_ids[0].product_id.id
+                if rec.folio_id.room_line_ids:
+                    rec.room_id = rec.folio_id.room_line_ids[0].product_id.id
 
     def action_set_to_draft(self):
         """
