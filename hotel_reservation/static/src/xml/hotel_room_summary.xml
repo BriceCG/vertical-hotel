@@ -4,56 +4,62 @@
         <div>
             <div style="overflow:auto;">
                 <table border="1">
-                    <t t-foreach="state.summary_header" t-as="header_detail" t-key="Math.floor(Math.random() * 100000)">
+                    <t t-foreach="state.summary_header" t-as="header_detail" t-key="0">
                         <tr>
-                            <t t-foreach="header_detail.header" t-as="date" t-key="Math.floor(Math.random() * 100000)">
+                            <t t-set="i" t-value="1" />
+                            <t t-foreach="header_detail.header" t-as="date" t-key="i">
                                 <th class="table_header" style="text-align:center;">
                                     <t t-esc="date" />
                                 </th>
+                                <t t-set="i" t-value="i+1" />
                             </t>
                         </tr>
                     </t>
-                    <t t-foreach="state.room_summary" t-as="detail" t-key="Math.floor(Math.random() * 100000)">
-                    <tr>
-                        <td style="text-align:center;">
-                            <t t-esc="detail.name" />
-                        </td>
-                        <t t-foreach="detail.value" t-as="status"  t-key="Math.floor(Math.random() * 100000)">
-                            <t t-if="status.state == 'Free'">
-                                <td
-                                    class="table_free"
-                                    t-att-data="status.room_id"
-                                    t-att-date="status.date"
-                                    style="text-align:center;"
+                    <t t-set="i" t-value="1" />
+                    <t t-foreach="state.room_summary" t-as="detail" t-key="i">
+                        <tr>
+                            <td style="text-align:center;">
+                                <t t-esc="detail.name" />
+                            </td>
+                            <t t-set="j" t-value="1" />
+                            <t t-foreach="detail.value" t-as="status"  t-key="j">
+                                <t t-if="status.state == 'Free'">
+                                    <td
+                                        class="table_free"
+                                        t-att-data="status.room_id"
+                                        t-att-date="status.date"
+                                        style="text-align:center;"
+                                    >
+                                        <t t-esc="status.state" />
+                                    </td>
+                                </t>
+                                <t
+                                    t-if="status.state != 'Free' and status.is_draft == 'No'"
                                 >
-                                    <t t-esc="status.state" />
-                                </td>
+                                    <td
+                                        class="table_reserved"
+                                        t-att-data-model="status.data_model"
+                                        t-att-data-id="status.data_id"
+                                        style="text-align:center;"
+                                    >
+                                        <t t-esc="status.state" />
+                                    </td>
+                                </t>
+                                <t t-if="status.is_draft == 'Yes'">
+                                    <td
+                                        class="table_reserved1"
+                                        t-att-data-model="status.data_model"
+                                        t-att-data-id="status.data_id"
+                                        style="text-align:center;"
+                                    >
+                                        <t t-esc="status.state" />
+                                    </td>
+                                </t>
+                                <t t-set="j" t-value="j+1" />
                             </t>
-                            <t
-                                t-if="status.state != 'Free' and status.is_draft == 'No'"
-                            >
-                                <td
-                                    class="table_reserved"
-                                    t-att-data-model="status.data_model"
-                                    t-att-data-id="status.data_id"
-                                    style="text-align:center;"
-                                >
-                                    <t t-esc="status.state" />
-                                </td>
-                            </t>
-                            <t t-if="status.is_draft == 'Yes'">
-                                <td
-                                    class="table_reserved1"
-                                    t-att-data-model="status.data_model"
-                                    t-att-data-id="status.data_id"
-                                    style="text-align:center;"
-                                >
-                                    <t t-esc="status.state" />
-                                </td>
-                            </t>
-                        </t>
-                    </tr>
-                </t>
+                        </tr>
+                        <t t-set="i" t-value="i+1" />
+                    </t>
                 </table>
             </div>
         </div>
