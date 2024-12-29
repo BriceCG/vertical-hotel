@@ -27,6 +27,7 @@ class HotelMenucardType(models.Model):
         menu_card = self.create({'name': name})
         return menu_card.id, menu_card.display_name
 
+
 class HotelMenucard(models.Model):
 
     _name = "hotel.menucard"

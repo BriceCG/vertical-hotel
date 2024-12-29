@@ -326,12 +326,13 @@
                     <separator string="Room Reservation Summary" colspan="4" />
                 </header>
                 <sheet>
-                    <group colspan="4" col="4">
-                        <div>
-                            <label for="date_from" string="Summary Period" />
-                            <field name="date_from" class="oe_inline" />
-                            to
-                            <field name="date_to" class="oe_inline" />
+                    <group>
+                        <label for="date_from" string="Date from"/>
+                        <div class="o_row" >
+                            <field name="date_from" class="oe_inline" nolabel="1" widget="date"/>
+                             <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow" />
+                            <label for="date_to" string="Date to" />
+                            <field name="date_to" widget="date" nolabel="1" />
                         </div>
                     </group>
                     <notebook>
